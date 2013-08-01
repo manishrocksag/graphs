@@ -25,6 +25,10 @@ public class Queue<Item> implements Iterable<Item> {
         }
     }
     private Node head,tail;
+    private int N;
+    public int size(){
+        return N;
+    }
 
     @Override
     public Iterator<Item> iterator() {
@@ -46,13 +50,30 @@ public class Queue<Item> implements Iterable<Item> {
             head=tail;
         else
             oldlast.next=tail;
+        N++;
+        
     }
     public Item dequeue(){
         assert(!isEmpty());
         Item item=head.item;
         head=head.next;
+        N--;
         if(isEmpty())
             tail=null;
         return item; 
     }
+    public static void main(String[] args) {
+   Queue<Integer> obj=new Queue<>();
+   obj.enqueue(0);
+   obj.enqueue(1);
+   obj.enqueue(2);
+   Iterator<Integer> i=obj.iterator();
+   while(i.hasNext())
+            System.out.println(i.next());
+       // System.out.println(obj.dequeue());
+       // System.out.println(obj.dequeue());
+       // System.out.println(obj.dequeue());
+     
+}
+    
 }
